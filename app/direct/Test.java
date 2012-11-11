@@ -1,5 +1,6 @@
 package direct;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,18 +16,49 @@ import static play.mvc.Controller.form;
 @DirectClass
 public class Test {
 
+    @DirectHttpParam
+    public List<String> data;
+
     @DirectFormParam
     public Map<String, String> params;
 
     @DirectUpload
     public List<FilePart> fileParts;
 
-    @DirectMethod
-    public Map<String, Object> execute(String value1, String value2) {
+    @DirectMethod(length = 2)
+    public Map<String, Object> execute() {
 
         Map<String, Object> result = new HashMap<String, Object>();
 
         result.put("success", true);
+
+        return result;
+    }
+
+    @DirectMethod(length = 1)
+    public Map<String, Object> search() {
+
+        System.out.println(data);
+
+        Map<String, Object> result = new HashMap<String, Object>();
+
+        List<Map<String, Object>> items = new ArrayList<Map<String,Object>>();
+        Map<String, Object> item = null;
+
+        item = new HashMap<String, Object>();
+        item.put("name", "item A");
+        items.add(item);
+
+        item = new HashMap<String, Object>();
+        item.put("name", "item B");
+        items.add(item);
+
+        item = new HashMap<String, Object>();
+        item.put("name", "item C");
+        items.add(item);
+
+        result.put("success", true);
+        result.put("items", items);
 
         return result;
     }

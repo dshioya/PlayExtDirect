@@ -1,7 +1,8 @@
 Ext.define('Sample.view.test.Panel', {
 
     requires: [
-        'Sample.view.test.Form'
+        'Sample.view.test.Form',
+        'Sample.view.test.List'
     ],
 
     extend: 'Ext.panel.Panel',
@@ -16,6 +17,9 @@ Ext.define('Sample.view.test.Panel', {
         },
         {
             xtype: 'test_form'
+        },
+        {
+            xtype: 'test_list'
         }
     ]
 

@@ -23,6 +23,10 @@ Ext.define('Sample.controller.Test', {
             console.log(arguments);
         });
 
+        Sample.direct.Test.execute(1, 2, function() {
+            console.log(arguments);
+        });
+
     }
 
 });
