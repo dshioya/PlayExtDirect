@@ -25,7 +25,7 @@ public class Test {
     @DirectUpload
     public List<FilePart> fileParts;
 
-    @DirectMethod(length = 2)
+    @DirectMethod(len = 2)
     public Map<String, Object> execute() {
 
         Map<String, Object> result = new HashMap<String, Object>();
@@ -35,7 +35,7 @@ public class Test {
         return result;
     }
 
-    @DirectMethod(length = 1)
+    @DirectMethod(len = 3)
     public Map<String, Object> search() {
 
         System.out.println(data);

@@ -325,7 +325,7 @@ public class DirectRouting extends Controller {
                         }
 
                         methodMap.put("name", methodName);
-                        methodMap.put("len", dm.length());
+                        methodMap.put("len", dm.len());
 
                         if(dm.type() == TYPE.FORM_POST) {
                             methodMap.put("formHandler", true);

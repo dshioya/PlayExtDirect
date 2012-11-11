@@ -10,5 +10,5 @@ import direct.Direct.TYPE;
 @Target(ElementType.METHOD)
 public @interface DirectMethod {
     TYPE type() default TYPE.HTTP_POST;
-    int length() default 0;
+    int len() default 0;
 }
