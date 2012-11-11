@@ -1,4 +1,49 @@
-This is your new Play 2.0 application
-=====================================
+Playframework2系で、Ext Directを使用するためのモジュールです。
 
-This file will be packaged with your application, when using `play dist`.
+controllers.DirectRoutingが主要なクラスです。
+
+* api ExtDirectのAPI定義を返すアクション
+* call リモートコールアクション
+
+今のところapiで返す名前空間は、controllers.DirectRoutingの定数としています。
+
+#使い方
+
+## ルーティング
+
+callアクションはGET,POST両方のルートが必要です。
+
+    GET     /direct/call                controllers.DirectRouting.call
+    POST    /direct/call                controllers.DirectRouting.call
+    GET     /direct/api                 controllers.DirectRouting.api
+
+## ExtDirectのロジッククラス
+
+### 配置場所
+
+controllers.DirectRoutingに配置先のパッケージを定義しています。
+
+    private static final String DIRECT_PACKAGE = "direct";
+
+### コード
+
+1. クラスに@DirectClassを付与する。
+2. リモートコール対象のメソッドに@DirectMethodを付与する。
+3. リクエストパラメータを受け取るフィールドを定義し、@DirectHttpParam,@DirectFormParam,@DirectUploadを付与する。
+
+これでapiアクションのAPI定義に対象のクラス・メソッドが含まれるようになります。
+HTTP Postの場合、引数の数は@DirectMethodのlenで指定します。
+またForm Postに指定する場合は、typeをDirect.TYPE.FORM_POSTとすることで、API定義がformHandler:trueとなります。
+
+各リクエストのパラメータは、3.で指定したフィールドに自動的にバインドされます。
+HTTP Postの場合は@DirectHttpParam、Form Postの場合は@DirectFormParamが対象です。
+アップロードファイルがある場合は、ファイルは@DirectUploadのフィールドにバインドされます。
+
+Form Postされたパラメータは、Playframeworkのformメソッドでモデルにバインドできます。
+
+    Form<TestModel> form = form(TestModel.class).bind(params);
+
+その際、formメソッドをstatic importしておくと便利です。
+
+    import static play.mvc.Controller.form;
+
