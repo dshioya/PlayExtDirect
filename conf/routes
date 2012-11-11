@@ -1,0 +1,11 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Direct API
+GET     /direct/call                controllers.DirectRouting.call
+POST    /direct/call                controllers.DirectRouting.call
+GET     /direct/api                 controllers.DirectRouting.api
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
